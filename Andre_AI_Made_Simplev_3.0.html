@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANDRE Method™ - The Anti-AI That Actually Works</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 255, 255, .05) 25%, rgba(0, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, .05) 75%, rgba(0, 255, 255, .05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 255, 255, .05) 25%, rgba(0, 255, 255, .05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 255, .05) 75%, rgba(0, 255, 255, .05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            animation: gridMove 2s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 50px; }
+        }
+
+        @keyframes neonPulse {
+            0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+            50% { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #00ffff; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, inset 0 0 10px rgba(0,255,255,0.2); }
+            50% { box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 60px #00ffff, inset 0 0 20px rgba(0,255,255,0.4); }
+        }
+
+        @keyframes orangeGlow {
+            0%, 100% { box-shadow: 0 0 10px #ff6600, 0 0 20px #ff6600; }
+            50% { box-shadow: 0 0 20px #ff6600, 0 0 40px #ff6600, 0 0 60px #ff6600; }
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+
+
+        .hero h1 {
+            font-size: 56px;
+            letter-spacing: 8px;
+            color: #00ffff;
+            animation: neonPulse 2s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        .hero .tagline {
+            font-size: 28px;
+            letter-spacing: 4px;
+            color: #ff6600;
+            text-shadow: 0 0 10px #ff6600, 0 0 20px #ff6600;
+            margin-bottom: 20px;
+        }
+
+        .hero .anti-ai-statement {
+            font-size: 20px;
+            color: #00ffff;
+            margin-bottom: 40px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .hero .description {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* LLM COMPATIBILITY SLIDER */
+        .llm-slider-section {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 60px 0;
+            overflow: hidden;
+            border-top: 2px solid #00ffff;
+            border-bottom: 2px solid #00ffff;
+        }
+
+        .llm-slider-title {
+            text-align: center;
+            color: #00ffff;
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .llm-slider {
+            display: flex;
+            animation: scrollLeft 30s linear infinite;
+            width: max-content;
+        }
+
+        .llm-item {
+            flex-shrink: 0;
+            margin: 0 40px;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ffff;
+            font-size: 20px;
+            letter-spacing: 2px;
+            color: #00ffff;
+            white-space: nowrap;
+        }
+
+        /* VALUE PROP - THE ANTI-AI */
+        .anti-ai-section {
+            background: rgba(255, 102, 0, 0.05);
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 40px 0;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #ff6600;
+            padding: 20px;
+            color: #ff6600;
+            font-size: 18px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .comparison-table td {
+            border: 2px solid #00ffff;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            vertical-align: top;
+        }
+
+        .comparison-table td.problem {
+            color: #ff6600;
+        }
+
+        .comparison-table td.solution {
+            color: #00ffff;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background: rgba(0, 255, 255, 0.05);
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 16px;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 20px #00ffff;
+            transform: translateY(-2px);
+        }
+
+        .cta-button.orange {
+            border-color: #ff6600;
+            color: #ff6600;
+            animation: orangeGlow 1.5s ease-in-out infinite;
+        }
+
+        .cta-button.orange:hover {
+            background: rgba(255, 102, 0, 0.2);
+            box-shadow: 0 0 20px #ff6600;
+        }
+
+        .content-box {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ffff;
+            padding: 40px;
+            animation: glowPulse 2s ease-in-out infinite;
+            margin: 20px 0;
+        }
+
+        .content-box h2 {
+            color: #00ffff;
+            font-size: 28px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .content-box h2::before {
+            content: "> ";
+            color: #ff6600;
+        }
+
+        .content-box h3 {
+            color: #ff6600;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin: 30px 0 15px 0;
+            text-transform: uppercase;
+        }
+
+        .content-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-box li {
+            padding: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .content-box li::before {
+            content: "->";
+            position: absolute;
+            left: 0;
+            color: #ff6600;
+        }
+
+        /* USE CASE SECTION */
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .use-case-card {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ffff;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px #00ffff;
+            border-color: #ff6600;
+        }
+
+        .use-case-card h3 {
+            color: #ff6600;
+            font-size: 20px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .use-case-card .scenario {
+            color: #00ffff;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+        }
+
+        /* ANDRE SUITE */
+        .suite-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .suite-card {
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ffff;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .suite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px #00ffff;
+        }
+
+        .suite-card h3 {
+            color: #ff6600;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .testimonial {
+            background: rgba(0, 0, 0, 0.9);
+            border-left: 5px solid #00ffff;
+            padding: 40px;
+            margin: 40px 0;
+            font-size: 18px;
+            line-height: 1.8;
+            font-style: italic;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .testimonial-author {
+            text-align: right;
+            margin-top: 20px;
+            color: #ff6600;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .use-case-grid, .suite-grid { grid-template-columns: 1fr; }
+            section { padding: 40px 15px; min-height: auto; }
+            .comparison-table { font-size: 12px; }
+            .comparison-table th, .comparison-table td { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-background"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>ANDRE METHOD™</h1>
+        <div class="tagline">AI SUCCESS MADE SIMPLE</div>
+        <div class="anti-ai-statement">THE AI FRAMEWORK THAT SETS YOU FREE</div>
+        <p class="description">
+            While other AI tools leave you stranded with broken code, vendor lock-in, and abandoned projects, 
+            ANDRE teaches you as you build, ensures you OWN your work, and guarantees you actually finish.
+        </p>
+        <a href="mailto:fordview2013@live.com?subject=ANDRE%20Demo%20Request" class="cta-button orange">SCHEDULE DEMO</a>
+    </section>
+
+    <!-- LLM COMPATIBILITY SLIDER -->
+    <div class="llm-slider-section">
+        <div class="llm-slider-title">⚡ WORKS WITH EVERY MAJOR LLM ⚡</div>
+        <div class="llm-slider">
+            <div class="llm-item">CHATGPT</div>
+            <div class="llm-item">CLAUDE</div>
+            <div class="llm-item">GEMINI</div>
+            <div class="llm-item">LLAMA</div>
+            <div class="llm-item">GROK</div>
+            <div class="llm-item">PERPLEXITY</div>
+            <div class="llm-item">MISTRAL</div>
+            <div class="llm-item">CHATGPT</div>
+            <div class="llm-item">CLAUDE</div>
+            <div class="llm-item">GEMINI</div>
+            <div class="llm-item">LLAMA</div>
+            <div class="llm-item">GROK</div>
+        </div>
+    </div>
+
+    <!-- THE ANTI-AI: WHY OTHER TOOLS FAIL -->
+    <section class="anti-ai-section">
+        <div class="container">
+            <div class="content-box">
+                <h2>Why Other AI Tools Fail You</h2>
+                <p style="margin-bottom: 30px; font-size: 18px; line-height: 1.8;">
+                    Drag-and-drop AI builders and credit-based platforms promise easy solutions. 
+                    The reality? High error rates, vendor lock-in, and projects you don't truly own. 
+                    ANDRE is different: we give you the framework that sets you free.
+                </p>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th style="width: 50%;">❌ TYPICAL AI PLATFORMS</th>
+                        <th style="width: 50%;">✅ ANDRE METHOD™</th>
+                    </tr>
+                    <tr>
+                        <td class="problem">
+                            <strong>High Error & Bug Rate</strong><br>
+                            Generated code breaks constantly. When errors happen, you're stuck - no one to fix it, no understanding of what went wrong.
+                        </td>
+                        <td class="solution">
+                            <strong>Learn As You Build</strong><br>
+                            ANDRE explains every decision, teaches you the logic, and ensures you understand your own code. When issues arise, you can fix them.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="problem">
+                            <strong>Credit-Based Lock-In</strong><br>
+                            Pay per generation. Run out of credits mid-project. Want to iterate? Pay more. Hostage to their pricing model.
+                        </td>
+                        <td class="solution">
+                            <strong>Works With Your LLM</strong><br>
+                            Use ChatGPT, Claude, Gemini - whatever you already pay for. No additional fees. No credit limits. Complete freedom.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="problem">
+                            <strong>You Don't Own Your Work</strong><br>
+                            Built in their proprietary system? Locked to their platform. Want to migrate? Good luck exporting or rebuilding from scratch.
+                        </td>
+                        <td class="solution">
+                            <strong>100% Portable Outputs</strong><br>
+                            Everything ANDRE creates is yours - standard formats, exportable code, documentation you can take anywhere. No lock-in. Ever.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="problem">
+                            <strong>Unstable Behavior</strong><br>
+                            Works today, breaks tomorrow. Platform updates change functionality. Your project becomes a maintenance nightmare.
+                        </td>
+                        <td class="solution">
+                            <strong>Structured Methodology</strong><br>
+                            ANDRE's proprietary frameworks are stable, documented, and battle-tested. Predictable results every time.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="problem">
+                            <strong>No Completion Guarantee</strong><br>
+                            Tools help you START projects. 90% are never finished. No accountability, no tracking, no follow-through.
+                        </td>
+                        <td class="solution">
+                            <strong>Completion Framework</strong><br>
+                            Visual progress tracking, structured accountability, and smart check-ins. ANDRE ensures you actually FINISH what you start.
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <p style="font-size: 20px; color: #ff6600; font-weight: bold; letter-spacing: 2px; margin-bottom: 20px;">
+                        OTHER TOOLS CREATE DEPENDENCY. ANDRE CREATES CAPABILITY.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section>
+        <div class="container">
+            <div class="content-box">
+                <h2>Real-World Use Cases</h2>
+                <p style="margin-bottom: 30px; text-align: center;">
+                    ANDRE adapts to YOUR workflow and YOUR LLM of choice. Here's how people actually use it.
+                </p>
+
+                <div class="use-case-grid">
+                    <div class="use-case-card">
+                        <h3>The Solo Entrepreneur</h3>
+                        <p class="scenario">SCENARIO:</p>
+                        <p>Building an app without technical skills. Needs to validate idea before spending money.</p>
+                        <p class="scenario">ANDRE'S SOLUTION:</p>
+                        <ul>
+                            <li>Validates project viability before you spend a dime</li>
+                            <li>Breaks complex builds into clear, manageable phases</li>
+                            <li>Tracks your progress to ensure completion</li>
+                            <li>Works seamlessly with your preferred AI tools</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: #00ffff; font-style: italic;">
+                            Result: App built in 30 days. $10,000 saved. 100% ownership.
+                        </p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h3>The Technical Founder</h3>
+                        <p class="scenario">SCENARIO:</p>
+                        <p>Can code but drowning in decisions. Needs structure for complex architecture.</p>
+                        <p class="scenario">ANDRE'S SOLUTION:</p>
+                        <ul>
+                            <li>Finds cost-saving alternatives to expensive tools</li>
+                            <li>Prioritizes features using proven methodologies</li>
+                            <li>Generates professional documentation automatically</li>
+                            <li>Intelligently routes tasks to optimal AI models</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: #00ffff; font-style: italic;">
+                            Result: 3-month project completed in 6 weeks. 40% cost reduction.
+                        </p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h3>The Corporate Team</h3>
+                        <p class="scenario">SCENARIO:</p>
+                        <p>Multiple stakeholders, unclear requirements, scope creep risk.</p>
+                        <p class="scenario">ANDRE'S SOLUTION:</p>
+                        <ul>
+                            <li>Clarifies requirements before work begins</li>
+                            <li>Validates project feasibility and ROI</li>
+                            <li>Creates shareable team documentation</li>
+                            <li>Platform-agnostic - works with any AI vendor</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: #00ffff; font-style: italic;">
+                            Result: Zero scope creep. 100% stakeholder alignment. On-time delivery.
+                        </p>
+                    </div>
+
+                    <div class="use-case-card">
+                        <h3>The Agency</h3>
+                        <p class="scenario">SCENARIO:</p>
+                        <p>Juggling multiple client projects. Needs consistent quality and efficiency.</p>
+                        <p class="scenario">ANDRE'S SOLUTION:</p>
+                        <ul>
+                            <li>Manages multiple projects with context switching</li>
+                            <li>Reusable workflow templates for consistency</li>
+                            <li>Delivers client-ready progress reports</li>
+                            <li>Optimizes costs across all AI tool usage</li>
+                        </ul>
+                        <p style="margin-top: 15px; color: #00ffff; font-style: italic;">
+                            Result: 3x project capacity. 50% faster delivery. Higher margins.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE ANDRE SUITE -->
+    <section>
+        <div class="container">
+            <div class="content-box">
+                <h2>The ANDRE Suite™</h2>
+                <p style="margin-bottom: 30px; text-align: center;">
+                    A complete ecosystem of tools working together to ensure your success.
+                </p>
+
+                <div class="suite-grid">
+                    <div class="suite-card">
+                        <h3>ANDRE Core</h3>
+                        <p style="font-size: 14px; line-height: 1.6; margin-top: 15px;">
+                            The foundation. Proprietary frameworks that work with any LLM. 
+                            Your intelligent project orchestrator that ensures completion.
+                        </p>
+                    </div>
+
+                    <div class="suite-card">
+                        <h3>ANDRE Cards™</h3>
+                        <p style="font-size: 14px; line-height: 1.6; margin-top: 15px;">
+                            Plug-and-play workflow templates. Load specialized cards for specific domains 
+                            that extend ANDRE's capabilities instantly.
+                        </p>
+                    </div>
+
+                    <div class="suite-card">
+                        <h3>ANDRE Export</h3>
+                        <p style="font-size: 14px; line-height: 1.6; margin-top: 15px;">
+                            Export to multiple formats for seamless integration. 
+                            Your work stays yours, portable to any tool or platform.
+                        </p>
+                    </div>
+
+                    <div class="suite-card">
+                        <h3>Cost Optimizer</h3>
+                        <p style="font-size: 14px; line-height: 1.6; margin-top: 15px;">
+                            Automatically identifies cost-saving alternatives. 
+                            Documented savings of $2,500-$10,000 per project.
+                        </p>
+                    </div>
+
+                    <div class="suite-card">
+                        <h3>Progress System</h3>
+                        <p style="font-size: 14px; line-height: 1.6; margin-top: 15px;">
+                            Visual tracking and accountability framework. 
+                            The system that ensures you actually FINISH what you start.
+                        </p>
+                    </div>
+
+                    <div class="suite-card">
+                        <h3>Smart Router</h3>
+                        <p style="font-size: 14px; line-height: 1.6; margin-top: 15px;">
+                            Intelligently routes tasks to optimal AI models. 
+                            ANDRE orchestrates multiple LLMs for maximum efficiency.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; padding: 30px; background: rgba(0, 255, 255, 0.05); border: 2px solid #00ffff;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">🎯 COMING SOON: ANDRE CARDS MARKETPLACE</h3>
+                    <p style="text-align: center; line-height: 1.8;">
+                        Pre-built workflow cards for every domain. Legal documentation? Load the Legal Card. 
+                        Technical architecture? Load the Tech Card. Community-created cards you can customize 
+                        and share. The ANDRE ecosystem grows with you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROOF -->
+    <section>
+        <div class="container">
+            <div class="content-box">
+                <h2>Verified Results</h2>
+                
+                <div class="testimonial">
+                    "I was going to spend 2,500 to 10,000 dollars on app development... With ANDRE, I'm building 
+                    it myself. It gave me everything - front end, back end, legal framework, staffing 
+                    recommendations. I can probably create anything."
+                    <div class="testimonial-author">- James Hudson, App Developer</div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 40px 0;">
+                    <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #00ffff; padding: 30px; text-align: center; animation: glowPulse 2s ease-in-out infinite;">
+                        <div style="font-size: 36px; color: #ff6600; font-weight: bold; margin-bottom: 10px; text-shadow: 0 0 10px #ff6600;">$10,000+</div>
+                        <div style="font-size: 14px; color: #00ffff; letter-spacing: 2px; text-transform: uppercase;">SAVED PER PROJECT</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #00ffff; padding: 30px; text-align: center; animation: glowPulse 2s ease-in-out infinite;">
+                        <div style="font-size: 36px; color: #ff6600; font-weight: bold; margin-bottom: 10px; text-shadow: 0 0 10px #ff6600;">MONTHS→DAYS</div>
+                        <div style="font-size: 14px; color: #00ffff; letter-spacing: 2px; text-transform: uppercase;">TIME REDUCTION</div>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.9); border: 2px solid #00ffff; padding: 30px; text-align: center; animation: glowPulse 2s ease-in-out infinite;">
+                        <div style="font-size: 36px; color: #ff6600; font-weight: bold; margin-bottom: 10px; text-shadow: 0 0 10px #ff6600;">100%</div>
+                        <div style="font-size: 14px; color: #00ffff; letter-spacing: 2px; text-transform: uppercase;">PROJECT OWNERSHIP</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section>
+        <div class="container" style="text-align: center;">
+            <div class="content-box">
+                <h2>Stop Building Dependencies. Start Building Capability.</h2>
+                <p style="font-size: 18px; margin: 30px 0; line-height: 1.8;">
+                    Schedule your personalized demo and see how ANDRE transforms your workflow - 
+                    teaching you, not replacing you. Works with your preferred LLM. No lock-in. Ever.
+                </p>
+                <a href="mailto:fordview2013@live.com?subject=ANDRE%20Demo%20Request" class="cta-button orange" style="font-size: 18px; padding: 25px 50px;">
+                    SCHEDULE DEMO NOW
+                </a>
+                
+                <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(0,255,255,0.3);">
+                    <p style="color: #00ffff; letter-spacing: 3px; margin-bottom: 10px;">
+                        ANDRE METHOD™ v9.5 | THE AI FRAMEWORK THAT SETS YOU FREE
+                    </p>
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.6);">
+                        Copyright © 2025 Donyell Ford. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
